@@ -9,8 +9,8 @@ import AnalyticsBar from "./AnalyticsBar.jsx"
 import "./App.css"
 
 const SYMBOLS = ["ALL", "BTC", "ETH", "AAPL", "TSLA"]
-const API_URL = "http://localhost:8080/api/sentiments"
-const WS_URL = "http://localhost:8080/ws"
+const API_URL = "https://sentiment-dashboard-api-rqdb.onrender.com/api/sentiments"
+const WS_URL = "https://sentiment-dashboard-api-rqdb.onrender.com/ws"
 
 const generateSessionId = () => {
   return Math.random().toString(36).substring(2) +
