@@ -17,6 +17,7 @@ body {
   margin: 0 auto;
   padding: 24px;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 /* Header */
@@ -27,6 +28,8 @@ body {
   margin-bottom: 24px;
   padding-bottom: 16px;
   border-bottom: 1px solid #222;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .header h1 {
@@ -350,6 +353,7 @@ body {
   gap: 0;
   width: 100%;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .analytics-item {
