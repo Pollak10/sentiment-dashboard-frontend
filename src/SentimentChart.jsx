@@ -52,8 +52,7 @@ function SentimentChart({ data }) {
         .slice(0, 30)
         .reverse()
         .map(item => ({
-            time: new Date(item.timestamp).toLocaleTimeString([], {
-                hour: "2-digit",
+            time: new Date(item.timestamp + "Z").toLocaleTimeString([], {                hour: "2-digit",
                 minute: "2-digit"
             }),
             score: parseFloat(item.sentimentScore.toFixed(2)),
