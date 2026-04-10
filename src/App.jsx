@@ -6,9 +6,10 @@ import SentimentChart from "./SentimentChart.jsx"
 import SentimentFeed from "./SentimentFeed.jsx"
 import PriceTicker from "./PriceTicker.jsx"
 import AnalyticsBar from "./AnalyticsBar.jsx"
+import AddSymbolModal from "./AddSymbolModal.jsx"
 import "./App.css"
 
-const SYMBOLS = ["ALL", "BTC", "ETH", "AAPL", "TSLA"]
+const DEFAULT_SYMBOLS = ["ALL", "BTC", "ETH", "AAPL", "TSLA"]
 const API_URL = "https://sentiment-dashboard-api-rqdb.onrender.com/api/sentiments"
 const WS_URL = "https://sentiment-dashboard-api-rqdb.onrender.com/ws"
 
@@ -23,12 +24,15 @@ function App() {
   const [connected, setConnected] = useState(false)
   const [prices, setPrices] = useState([])
   const [analytics, setAnalytics] = useState(null)
+  const [symbols, setSymbols] = useState(DEFAULT_SYMBOLS)
+  const [showModal, setShowModal] = useState(false)
   const sessionId = useRef(generateSessionId())
 
   useEffect(() => {
     fetchHistoricalData()
     fetchPrices()
     fetchAnalytics()
+    fetchWatchlist()
     connectWebSocket()
     notifyJoin()
 
@@ -44,6 +48,29 @@ function App() {
       notifyLeave()
     }
   }, [])
+
+  const fetchWatchlist = async () => {
+    try {
+      const response = await axios.get(API_URL + "/watchlist")
+      const watchlistSymbols = response.data.map(item => item.symbol)
+      const allSymbols = [...DEFAULT_SYMBOLS]
+      watchlistSymbols.forEach(symbol => {
+        if (!allSymbols.includes(symbol)) {
+          allSymbols.push(symbol)
+        }
+      })
+      setSymbols(allSymbols)
+    } catch (error) {
+      console.error("Error fetching watchlist:", error)
+    }
+  }
+
+  const handleSymbolAdded = (symbol) => {
+    if (!symbols.includes(symbol)) {
+      setSymbols(prev => [...prev, symbol])
+    }
+    fetchPrices()
+  }
 
   const notifyJoin = async () => {
     try {
@@ -141,7 +168,7 @@ function App() {
         <PriceTicker prices={prices} />
 
         <div className="symbol-filter">
-          {SYMBOLS.map(symbol => (
+          {symbols.map(symbol => (
               <button
                   key={symbol}
                   className={selectedSymbol === symbol ? "active" : ""}
@@ -150,12 +177,25 @@ function App() {
                 {symbol}
               </button>
           ))}
+          <button
+              className="add-symbol-btn"
+              onClick={() => setShowModal(true)}
+          >
+            +
+          </button>
         </div>
 
         <div className="dashboard">
           <SentimentChart data={filteredSentiments} />
           <SentimentFeed data={filteredSentiments} />
         </div>
+
+        {showModal && (
+            <AddSymbolModal
+                onClose={() => setShowModal(false)}
+                onSymbolAdded={handleSymbolAdded}
+            />
+        )}
       </div>
   )
 }
