@@ -70,10 +70,12 @@ body {
   gap: 16px;
   margin-bottom: 24px;
   width: 100%;
-  overflow-x: auto;
+  max-width: 100%;
+  overflow-x: scroll;
   padding-bottom: 8px;
   scrollbar-width: thin;
   scrollbar-color: #333 transparent;
+  box-sizing: border-box;
 }
 
 .price-ticker::-webkit-scrollbar {
