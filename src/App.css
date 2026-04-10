@@ -9,13 +9,14 @@ body {
   color: #ffffff;
   font-family: -apple-system, BlinkMacSystemFont,
   "Segoe UI", sans-serif;
+  overflow-x: hidden;
 }
 
 .app {
   max-width: 1200px;
   margin: 0 auto;
   padding: 24px;
-  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 /* Header */
@@ -193,6 +194,7 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 24px;
   width: 100%;
+  box-sizing: border-box;
 }
 
 /* Chart */
@@ -346,6 +348,8 @@ body {
   padding: 16px 24px;
   margin-bottom: 24px;
   gap: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .analytics-item {
