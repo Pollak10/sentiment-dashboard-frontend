@@ -75,14 +75,11 @@ body {
   display: flex;
   flex-direction: row;
   gap: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 0;
   width: 100%;
-  max-width: 100%;
-  overflow-x: scroll;
   padding-bottom: 8px;
   scrollbar-width: thin;
   scrollbar-color: #333 transparent;
-  box-sizing: border-box;
 }
 
 .price-ticker::-webkit-scrollbar {
@@ -96,6 +93,14 @@ body {
 .price-ticker::-webkit-scrollbar-thumb {
   background-color: #333;
   border-radius: 4px;
+}
+
+.price-ticker-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  max-width: calc(100vw - 48px);
+  margin-bottom: 24px;
 }
 
 .price-card {

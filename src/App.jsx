@@ -164,9 +164,9 @@ function App() {
         </header>
 
         <AnalyticsBar analytics={analytics} />
-<div style={{{ width: "100%", overflow: "hidden"  }}>
+        <div className="price-ticker-wrapper">
         <PriceTicker prices={prices} />
-    </div>
+        </div>
 
         <div className="symbol-filter">
           {symbols.map(symbol => (
