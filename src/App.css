@@ -60,11 +60,28 @@ body {
 
 /* Price Ticker */
 .price-ticker {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-direction: row;
   gap: 16px;
   margin-bottom: 24px;
   width: 100%;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: #333 transparent;
+}
+
+.price-ticker::-webkit-scrollbar {
+  height: 4px;
+}
+
+.price-ticker::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.price-ticker::-webkit-scrollbar-thumb {
+  background-color: #333;
+  border-radius: 4px;
 }
 
 .price-card {
@@ -75,6 +92,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  min-width: 160px;
+  flex-shrink: 0;
 }
 
 .price-symbol {
@@ -114,6 +133,13 @@ body {
   display: flex;
   gap: 8px;
   margin-bottom: 24px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.symbol-filter::-webkit-scrollbar {
+  display: none;
 }
 
 .symbol-filter button {
@@ -125,6 +151,8 @@ body {
   cursor: pointer;
   font-size: 14px;
   transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .symbol-filter button:hover {
@@ -137,6 +165,25 @@ body {
   color: #000000;
   border-color: #00ff88;
   font-weight: 600;
+}
+
+/* Add Symbol Button */
+.add-symbol-btn {
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 1px dashed #444;
+  background-color: transparent;
+  color: #555;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.2s;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.add-symbol-btn:hover {
+  border-color: #00ff88;
+  color: #00ff88;
 }
 
 /* Dashboard Layout */
@@ -286,6 +333,7 @@ body {
   color: #ccc;
   line-height: 1.4;
 }
+
 /* Analytics Bar */
 .analytics-bar {
   display: flex;
@@ -324,24 +372,6 @@ body {
   width: 1px;
   height: 40px;
   background-color: #222;
-}
-
-/* Add Symbol Button */
-.add-symbol-btn {
-  padding: 8px 14px;
-  border-radius: 20px;
-  border: 1px dashed #444;
-  background-color: transparent;
-  color: #555;
-  cursor: pointer;
-  font-size: 18px;
-  transition: all 0.2s;
-  line-height: 1;
-}
-
-.add-symbol-btn:hover {
-  border-color: #00ff88;
-  color: #00ff88;
 }
 
 /* Modal */
