@@ -25,7 +25,7 @@ function SentimentFeed({ data }) {
                 {Math.round(item.sentimentScore * 100)}% confident
               </span>
                             <span className="timestamp">
-                {new Date(item.timestamp).toLocaleTimeString()}
+                                {new Date(item.timestamp + "Z").toLocaleTimeString()}
               </span>
                         </div>
                         <p className="feed-content">{item.content}</p>
